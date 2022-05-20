@@ -298,7 +298,7 @@ public class calculator implements ActionListener {
             flag=3;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
-            char s[]=oldvalue.toCharArray();
+            //char s[]=oldvalue.toCharArray();
             displaylabel.setText("/");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
@@ -318,7 +318,7 @@ public class calculator implements ActionListener {
             flag=2;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
-            char s[]=oldvalue.toCharArray();
+            //char s[]=oldvalue.toCharArray();
             displaylabel.setText("X");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
@@ -338,7 +338,7 @@ public class calculator implements ActionListener {
             flag=1;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
-            char s[]=oldvalue.toCharArray();
+            //char s[]=oldvalue.toCharArray();
             displaylabel.setText("-");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
@@ -358,7 +358,7 @@ public class calculator implements ActionListener {
              flag =0;
             isOperatorClicked = true;
                 oldvalue = displaylabel.getText();
-                char s[] = oldvalue.toCharArray();
+                //char s[] = oldvalue.toCharArray();
                 displaylabel.setText("+");
                 if (isOperatorClicked == false) {
                     displaylabel.setText("");
