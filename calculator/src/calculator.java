@@ -7,6 +7,9 @@ public class calculator implements ActionListener {
     Boolean isOperatorClicked = false;
     String oldvalue;
     int flag=-1;
+    float result=0;
+    float sum=0,subtract=0;
+    char s[] = new char[50];
     JFrame jf;
     JButton sevenbutton;
     JLabel displaylabel;
@@ -230,18 +233,26 @@ public class calculator implements ActionListener {
                 float oldvaluef = Float.parseFloat(oldvalue);
                 float newvaluef = Float.parseFloat(newvalue);
 
-                float result = oldvaluef + newvaluef;
+                result = oldvaluef + newvaluef;
+
 
                 displaylabel.setText(result + "");
                 flag = -1;
+
             } else if (flag==1) {
                 String newvalue = displaylabel.getText();
                 float oldvaluef = Float.parseFloat(oldvalue);
                 float newvaluef = Float.parseFloat(newvalue);
+               /*for(int i=0; i<s.length; i++){
+                   s[i]= (char) Float.parseFloat(String.valueOf(s[i]));
+                }
+               for(int i =0; i< s.length;i++){
+                    subtract = subtract-s[i];
+               }*/
 
-                float result = oldvaluef - newvaluef;
+                result = oldvaluef - newvaluef;
 
-                displaylabel.setText(result + "");
+                displaylabel.setText(result+ "");
                 flag = -1;
 
             } else if (flag==2) {
@@ -249,7 +260,7 @@ public class calculator implements ActionListener {
                 float oldvaluef = Float.parseFloat(oldvalue);
                 float newvaluef = Float.parseFloat(newvalue);
 
-                float result = oldvaluef * newvaluef;
+                 result = oldvaluef * newvaluef;
 
                 displaylabel.setText(result + "");
                 flag = -1;
@@ -259,7 +270,7 @@ public class calculator implements ActionListener {
                 float oldvaluef = Float.parseFloat(oldvalue);
                 float newvaluef = Float.parseFloat(newvalue);
 
-                float result = oldvaluef / newvaluef;
+                 result = oldvaluef / newvaluef;
 
                 displaylabel.setText(result + "");
                 flag = -1;
@@ -275,16 +286,31 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==dotbutton) {
-            displaylabel.setText(".");
+            if(isOperatorClicked){
+                displaylabel.setText(".");
+                isOperatorClicked=false;
+            }else {
+                displaylabel.setText(displaylabel.getText() + ".");
+            }
         }
 
         else if (e.getSource()==divbutton) {
             flag=3;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
+            char s[]=oldvalue.toCharArray();
             displaylabel.setText("/");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
+            }
+            if(oldvalue=="+"){
+                displaylabel.setText("error");
+            } else if (oldvalue=="-") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="X") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="/") {
+                displaylabel.setText("error");
             }
         }
 
@@ -292,9 +318,19 @@ public class calculator implements ActionListener {
             flag=2;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
+            char s[]=oldvalue.toCharArray();
             displaylabel.setText("X");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
+            }
+            if(oldvalue=="+"){
+                displaylabel.setText("error");
+            } else if (oldvalue=="-") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="X") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="/") {
+                displaylabel.setText("error");
             }
         }
 
@@ -302,20 +338,40 @@ public class calculator implements ActionListener {
             flag=1;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
+            char s[]=oldvalue.toCharArray();
             displaylabel.setText("-");
             if(isOperatorClicked == false){
                 displaylabel.setText("");
+            }
+            if(oldvalue=="+"){
+                displaylabel.setText("error");
+            } else if (oldvalue=="-") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="X") {
+                displaylabel.setText("error");
+            } else if (oldvalue=="/") {
+                displaylabel.setText("error");
             }
         }
 
         else if (e.getSource()==addbutton) {
              flag =0;
             isOperatorClicked = true;
-            oldvalue = displaylabel.getText();
-            displaylabel.setText("+");
-            if(isOperatorClicked == false){
-                displaylabel.setText("");
-            }
+                oldvalue = displaylabel.getText();
+                char s[] = oldvalue.toCharArray();
+                displaylabel.setText("+");
+                if (isOperatorClicked == false) {
+                    displaylabel.setText("");
+                }
+                if(oldvalue=="+"){
+                    displaylabel.setText("error");
+                } else if (oldvalue=="-") {
+                    displaylabel.setText("error");
+                } else if (oldvalue=="X") {
+                    displaylabel.setText("error");
+                } else if (oldvalue=="/") {
+                    displaylabel.setText("error");
+                }
         }
 
         else if (e.getSource()==clearbutton) {
