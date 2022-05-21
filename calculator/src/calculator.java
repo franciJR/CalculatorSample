@@ -3,12 +3,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Float.parseFloat;
+
 public class calculator implements ActionListener {
     Boolean isOperatorClicked = false;
     String oldvalue;
+    String currentvalue;
     int flag=-1;
     float result=0;
-    float sum=0,subtract=0;
+    float sum=0,subtract=0,mul=1;
+    float oldvaluef=0;
     char s[] = new char[50];
     JFrame jf;
     JButton sevenbutton;
@@ -230,49 +234,37 @@ public class calculator implements ActionListener {
         } else if (e.getSource()==equalbutton) {
             if(flag==0) {
                 String newvalue = displaylabel.getText();
-                float oldvaluef = Float.parseFloat(oldvalue);
-                float newvaluef = Float.parseFloat(newvalue);
+                float newvaluef = parseFloat(newvalue);
+                //float oldvaluef = parseFloat(oldvalue);
+                sum = sum + newvaluef;
 
-                result = oldvaluef + newvaluef;
-
-
-                displaylabel.setText(result + "");
+                displaylabel.setText(sum + "");
                 flag = -1;
 
             } else if (flag==1) {
                 String newvalue = displaylabel.getText();
-                float oldvaluef = Float.parseFloat(oldvalue);
-                float newvaluef = Float.parseFloat(newvalue);
-               /*for(int i=0; i<s.length; i++){
-                   s[i]= (char) Float.parseFloat(String.valueOf(s[i]));
-                }
-               for(int i =0; i< s.length;i++){
-                    subtract = subtract-s[i];
-               }*/
+                float newvaluef = parseFloat(newvalue);
+                sum=sum-newvaluef;
 
-                result = oldvaluef - newvaluef;
-
-                displaylabel.setText(result+ "");
+                displaylabel.setText(sum+ "");
                 flag = -1;
 
             } else if (flag==2) {
                 String newvalue = displaylabel.getText();
-                float oldvaluef = Float.parseFloat(oldvalue);
-                float newvaluef = Float.parseFloat(newvalue);
+                float newvaluef = parseFloat(newvalue);
+                sum=sum*newvaluef;
 
-                 result = oldvaluef * newvaluef;
 
-                displaylabel.setText(result + "");
+                displaylabel.setText(sum+ "");
                 flag = -1;
 
             } else if (flag==3) {
                 String newvalue = displaylabel.getText();
-                float oldvaluef = Float.parseFloat(oldvalue);
-                float newvaluef = Float.parseFloat(newvalue);
+                float newvaluef = parseFloat(newvalue);
+                sum=sum/newvaluef;
 
-                 result = oldvaluef / newvaluef;
 
-                displaylabel.setText(result + "");
+                displaylabel.setText(sum + "");
                 flag = -1;
             }
         }
@@ -295,14 +287,41 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==divbutton) {
+            if(flag==0){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum+currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==1){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum= sum - currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==2){
+                currentvalue = displaylabel.getText();
+                float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum*currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else{
+                currentvalue = displaylabel.getText();
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum/currentvaluef;
+                displaylabel.setText(sum+"");
+            }
             flag=3;
             isOperatorClicked = true;
             oldvalue = displaylabel.getText();
-            //char s[]=oldvalue.toCharArray();
+            float oldvaluef = parseFloat(oldvalue);
+            sum = sum / oldvaluef;
+
             displaylabel.setText("/");
-            if(isOperatorClicked == false){
-                displaylabel.setText("");
-            }
+
             if(oldvalue=="+"){
                 displaylabel.setText("error");
             } else if (oldvalue=="-") {
@@ -315,14 +334,43 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==mulbutton) {
+            if(flag==0){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum+currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==1){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum= sum - currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==3){
+                currentvalue = displaylabel.getText();
+                float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum/currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else{
+                currentvalue = displaylabel.getText();
+                float currentvaluef = Float.parseFloat(currentvalue);
+                if (sum==0) {
+                    sum = currentvaluef;
+                }
+                else{
+                    sum=sum*currentvaluef;
+                }
+                displaylabel.setText(sum+"");
+            }
             flag=2;
             isOperatorClicked = true;
-            oldvalue = displaylabel.getText();
-            //char s[]=oldvalue.toCharArray();
+            //oldvalue = displaylabel.getText();
             displaylabel.setText("X");
-            if(isOperatorClicked == false){
-                displaylabel.setText("");
-            }
+
             if(oldvalue=="+"){
                 displaylabel.setText("error");
             } else if (oldvalue=="-") {
@@ -335,14 +383,42 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==subbutton) {
+            if(flag==0){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum+currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==2){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum= sum * currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==3){
+                currentvalue = displaylabel.getText();
+                float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum/currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else{
+                currentvalue = displaylabel.getText();
+                float currentvaluef = Float.parseFloat(currentvalue);
+                if(sum==0){
+                    sum=currentvaluef-sum;
+                }
+                else{
+                    sum=sum - currentvaluef;
+                }
+                displaylabel.setText(sum+"");
+            }
             flag=1;
             isOperatorClicked = true;
-            oldvalue = displaylabel.getText();
-            //char s[]=oldvalue.toCharArray();
             displaylabel.setText("-");
-            if(isOperatorClicked == false){
-                displaylabel.setText("");
-            }
+
             if(oldvalue=="+"){
                 displaylabel.setText("error");
             } else if (oldvalue=="-") {
@@ -355,14 +431,41 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==addbutton) {
+            if(flag==1){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum-currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==2){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum= sum * currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else if(flag==3){
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum=sum/currentvaluef;
+                displaylabel.setText(sum+"");
+            }
+            else{
+                currentvalue = displaylabel.getText();
+                //float oldvaluef = Float.parseFloat(oldvalue);
+                float currentvaluef = Float.parseFloat(currentvalue);
+                sum = sum + currentvaluef;
+                displaylabel.setText(sum+"");
+            }
              flag =0;
             isOperatorClicked = true;
-                oldvalue = displaylabel.getText();
-                //char s[] = oldvalue.toCharArray();
+                //oldvalue = displaylabel.getText();
+            //float oldvaluef = Float.parseFloat(oldvalue);
+               // sum = sum + oldvaluef;
                 displaylabel.setText("+");
-                if (isOperatorClicked == false) {
-                    displaylabel.setText("");
-                }
+
                 if(oldvalue=="+"){
                     displaylabel.setText("error");
                 } else if (oldvalue=="-") {
@@ -375,6 +478,7 @@ public class calculator implements ActionListener {
         }
 
         else if (e.getSource()==clearbutton) {
+            sum=0;
             displaylabel.setText("");
         }
 
